@@ -272,7 +272,7 @@ session.query(
     cast("2010-12-01", DateTime),
     cast("2010-12-01", Date),
 all()
-
+)
 
 
 # Unions
@@ -293,16 +293,17 @@ session.commit()
 
 # update quantity of all quantity of items to 60 whose name starts with 'W'
 
-print(session.query(Item).filter(
+session.query(Item).filter(
     Item.name.ilike("W%")
-).update({"quantity": 60}, synchronize_session='fetch'))
+).update({"quantity": 60}, synchronize_session='fetch')
 session.commit()
 
+
 # Deleting data
-i = session.query(Item).filter(Item.name == 'Monitor').one()
-i
-session.delete(i)
-session.commit()
+#i = session.query(Item).filter(Item.name == 'Monitor').one()
+#i
+#session.delete(i)
+#session.commit()
 
 # To delete multiple records at once use the delete() method of the Query object.
 
@@ -321,6 +322,7 @@ print(session.query(Customer).filter(text("first_name = 'John'")).all())
 print(session.query(Customer).filter(text("town like 'Nor%'")).all())
 
 print(session.query(Customer).filter(text("town like 'Nor%'")).order_by(text("first_name, id desc")).all())
+
 
 # Transactions
 def dispatch_order(order_id):
